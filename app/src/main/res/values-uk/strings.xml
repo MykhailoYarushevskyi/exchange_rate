@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Курс валют Приватбанк (картковий)</string>
+    <string name="button_Exchange_rate">ОНОВИТИ КУРС</string>
+    <string name="error_result_JSON_string_to_Map_is_null">ПОМИЛКА при відображенні JSON рядка в структуру MAP</string>
+    <string name="error_while_creating_Input_Stream">ПОМИЛКА: Немає з\'єднання з мережею, або сайт не відповідає</string>
+    <string name="error_while_parsed_JSON_string_and_string_is_null">ПОМИЛКА: JSON рядок не існує</string>
+    <string name="error_while_using_the_Input_Stream">ПОМИЛКА: Від\'ємна довжина масиву (при створенні)</string>
+    <string name="exception_Create_JSONObject">ПОМИЛКА при створенні JSONArray чи JSONObject</string>
+    <string name="exception_create_URL">URL не створене. Викинуто виключення MalformedURLException</string>
+    <string name="exception_while_creating_Input_Stream">ПОМИЛКА: Немає з\'єднання з мережею, або сайт не відповідає</string>
+    <string name="hint_Text_View_Exchange_field">Інформація відсутня</string>
+    <string name="http_PvBank_exchange_JSON_file"><![CDATA[https://api.privatbank.ua/p24api/pubinfo?exchange&json&coursid=11]]></string>
+    <string name="title_Purchase_Dollar">Купують</string>
+    <string name="title_Purchase_Euro">Купують:</string>
+    <string name="title_Selling_Dollar">Продають:</string>
+    <string name="title_Selling_Euro">Продають:</string>
+    <string name="rate_was_refreshed">КУРС ОНОВЛЕНО</string>
+    <string name="pressed_the_button_refresh_rate">ТРИВАЄ ОНОВЛЕННЯ КУРСУ</string>
+    <string name="http_call_site_for_Pressed_Action_Button"><![CDATA[http://minfin.com.ua/ua/currency/auction/usd/sell/vinnitsa/?presort=&sort=time&order=desc]]></string>
+    <string name="message_About_Action_that_you_must_do">Введіть число(числа) для розрахунку. Залиште одне поле порожнім для розрахунку у ньому</string>
+    <string name="title_activity_calc">Обчислити суму для обміну</string>
+    <string name="title_dashboard">Панель</string>
+    <string name="title_home">Додому</string>
+    <string name="title_notifications">Повідомлення</string>
+    <string name="error_Handling_Pressing_Button">ПОМИЛКА Обробки Натискання Кнопки</string>
+    <string name="hint_field_amount_currency">Кількість</string>
+    <string name="hint_field_sum">Сума</string>
+    <string name="hint_field_title_currency_rate">курс валюти:</string>
+    <string name="hint_field_value_currency_rate">курс</string>
+    <string name="exception_convert_String_to_double">ПОМИЛКА: NumberFormatException : При конвертації String в змінну double</string>
+    <string name="hint_field_title_amount_currency">Кількість:</string>
+    <string name="hint_field_title_sum">Сума:</string>
+    <string name="hint_TextView_Value_Result">Результат поки що відсутній</string>
+    <string name="text_TextView_Title_Result">Результат розрахунку:</string>
+    <string name="error_filling_input_fields">ПОМИЛКА: Тільки одне поле може бути порожнім АБО всі поля заповнюються для перерахунку суми</string>
+    <string name="error_No_Action_for_this_Button">Немає дії для цієї кнопки</string>
+    <string name="sign_DOLLAR">$</string>
+    <string name="sign_EURO">€</string>
+    <string name="sign_My_MONEY">грн</string>
+    <string name="call_calculator_or_other_tools">Call Calculator</string>
+    <string name="title_Purchase">Купують:</string>
+    <string name="title_Selling">Продають:</string>
+    <string name="progress_dialog_working_message">курс валют оновлюється...</string>
+    <string name="progress_dialog_working_title">Будь ласка, зачекайте.</string>
+    <string name="error_Timed_Out_Response_Network">ПОМИЛКА: Перевищено час очікування відповіді мережі, або від сайту</string>
+    <string name="pending_Response_Network">Будь ласка, зачекайте. Очікується відповідь мережі...</string>
+    <string name="exception_closing_Input_Stream">ПОМИЛКА: Виключення при закритті InputStream</string>
+    <string name="hint_buttonExchangeRate">ОНОВИТИ КУРС ВАЛЮТ</string>
+    <string name="hint_imageButtonBuyDollarCalculate">Порахувати для цієї валюти</string>
+    <string name="hint_imageActionButton">Перейти на вибраний Вами сайт</string>
+    <string name="hint_imageButtonBuyEuroCalculate">Порахувати для цієї валюти</string>
+    <string name="hint_imageButtonSaleDollarCalculate">Порахувати для цієї валюти</string>
+    <string name="hint_imageButtonSaleEuroCalculate">Порахувати для цієї валюти</string>
+    <string name="hint_imageCalcButton">Перейти до зовнішнього додатку (Калькулятор)</string>
+    <string name="hint_imageButtonClearRow3Col2">Стерти Всі Дані В цьому Рядку</string>
+    <string name="hint_imageButtonClearRow2Col2">Стерти Всі Дані В цьому Рядку</string>
+    <string name="hint_imageButtonClearRow1Col2">Стерти Всі Дані В цьому Рядку</string>
+    <string name="hint_imageButtonCalculateOk">Порахувати результат</string>
+    <string name="hint_No_hint_for_this_button">Підказка відсутня</string>
+</resources>

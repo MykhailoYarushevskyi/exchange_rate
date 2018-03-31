@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="ua.biz.synergy.exchangerateattempt1.CalcActivity">
+    <!--     android:divider="?android:dividerHorizontal" -->
+    <FrameLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!--android:textAppearance="@style/CodeFont" -->
+        <TextView
+            android:id="@+id/message_for_action"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textSize="16sp"
+            tools:text="123456780123456789012345678901234567890132456789013245678901324567890123456789012345678901234567890(100 symbols)" />
+    </FrameLayout>
+    <!-- With Android O and Support Lib 26, TextView gains a new property: autoSizeTextType,
+        which allows the text to scale uniformly when working with dynamic content.-->
+    <!--e.g.: app:autoSizeTextType = "uniform" -->
+
+    <TableLayout
+        android:id="@+id/content_table"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="4dp"
+        android:layout_weight="0.85"
+        android:orientation="horizontal">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textViewCalculateRow1Col1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:hint="@string/hint_field_title_currency_rate"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/editTextCalculateRow1Col2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="7"
+                    android:gravity="center"
+                    android:hint="@string/hint_field_value_currency_rate"
+                    android:imeOptions="actionDone"
+                    android:inputType="numberDecimal"
+                    tools:text="00.00" />
+            </android.support.design.widget.TextInputLayout>
+
+            <ImageButton
+                android:id="@+id/imageButtonClearRow1Col2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="3"
+                android:gravity="center"
+                app:srcCompat="@android:drawable/ic_delete" />
+
+        </TableRow>
+
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textViewCalculateRow2Col1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:hint="@string/hint_field_title_amount_currency"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+            <!-- tools:text="@string/hint_field_title_amount_currency" -->
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/editTextCalculateRow2Col2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="7"
+                    android:gravity="center"
+                    android:hint="@string/hint_field_amount_currency"
+                    android:imeOptions="actionDone"
+                    android:inputType="numberDecimal"
+                    tools:text="00000.00" />
+            </android.support.design.widget.TextInputLayout>
+
+            <ImageButton
+                android:id="@+id/imageButtonClearRow2Col2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="3"
+                android:gravity="center"
+                app:srcCompat="@android:drawable/ic_delete" />
+
+        </TableRow>
+
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textViewCalculateRow3Col1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:hint="@string/hint_field_title_sum"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+            <!-- tools:text="@string/hint_field_title_sum" -->
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/editTextCalculateRow3Col2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="7"
+                    android:gravity="center"
+                    android:hint="@string/hint_field_sum"
+                    android:inputType="numberDecimal"
+                    tools:text="0000000.00" />
+            </android.support.design.widget.TextInputLayout>
+
+            <View
+                android:layout_width="15dip"
+                android:layout_height="1dip"
+                android:background="#FF909090" />
+
+            <ImageButton
+                android:id="@+id/imageButtonClearRow3Col2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="3"
+                android:gravity="center"
+                app:srcCompat="@android:drawable/ic_delete" />
+
+        </TableRow>
+
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageButton
+                android:id="@+id/imageButtonCalculateOk"
+                android:layout_width="50sp"
+                android:layout_height="50sp"
+                android:layout_column="1"
+                android:adjustViewBounds="false"
+                android:background="@drawable/ic_action_refresh"
+                android:backgroundTint="@color/colorPrimary"
+                app:srcCompat="@drawable/ic_equal" />
+
+        </TableRow>
+
+    </TableLayout>
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="?android:attr/windowBackground"
+        app:itemBackground="@color/colorPrimary"
+        app:itemIconTint="@color/lime"
+        app:itemTextColor="@color/lightGreen400"
+        app:menu="@menu/navigation" />
+
+</LinearLayout>

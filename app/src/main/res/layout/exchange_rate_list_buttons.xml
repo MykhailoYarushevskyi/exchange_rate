@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ua.biz.synergy.exchangerateattempt1.ExchangeActivity"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="81dp">
+
+    <TextView
+        android:id="@+id/textViewResultTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/text_TextView_Title_Result"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewResultValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:elevation="20dp"
+        android:hint="@string/hint_TextView_Value_Result"
+        android:scrollHorizontally="true"
+        android:shadowColor="@android:color/holo_blue_bright"
+        android:textColor="@color/colorAccent"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textViewResultTitle"
+        app:layout_constraintStart_toEndOf="@+id/textViewResultTitle" />
+
+    <Button
+        android:id="@+id/buttonExchangeRate"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="88dp"
+        android:layout_height="97dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="135dp"
+        android:layout_marginStart="105dp"
+        android:background="@android:color/holo_green_dark"
+        android:drawableTop="@mipmap/ic_launcher"
+        android:elevation="10dp"
+        android:shadowColor="@android:color/darker_gray"
+        android:text="@string/button_Exchange_rate"
+        android:textColor="@android:color/white"
+        android:textColorLink="@android:color/holo_red_light"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.626"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imageActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="43dp"
+        android:background="@android:color/holo_blue_light"
+        android:contentDescription="@string/description_action_button_web_site"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.628"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/buttonExchangeRate"
+        app:srcCompat="@drawable/ic_internet_icon" />
+
+    <ImageButton
+        android:id="@+id/imageCalcButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="43dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginStart="8dp"
+        android:background="@color/colorAccent"
+        android:contentDescription="@string/call_calculator_or_other_tools"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.725"
+        app:layout_constraintLeft_toRightOf="@+id/buttonExchangeRate"
+        app:layout_constraintRight_toRightOf="parent"
+        app:srcCompat="@drawable/ic_extension_black_48px" />
+
+    <ProgressBar
+        android:id="@+id/progressBarCircle"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="32dp"
+        android:indeterminate="true"
+        android:visibility="invisible"
+        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintLeft_toLeftOf="@+id/buttonExchangeRate"
+        app:layout_constraintRight_toRightOf="@+id/buttonExchangeRate"
+        app:layout_constraintTop_toTopOf="@+id/buttonExchangeRate" />
+
+</android.support.constraint.ConstraintLayout>

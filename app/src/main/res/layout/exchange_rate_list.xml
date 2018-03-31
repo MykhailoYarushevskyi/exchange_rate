@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:id="@+id/swipe_container"
+android:layout_width="match_parent"
+android:layout_height="match_parent">
+-->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context="ua.biz.synergy.exchangerateattempt1.ExchangeActivity"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="81dp">
+
+            <TextView
+                android:id="@+id/textViewTitleExchRateSaleDollar"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/title_Selling_Dollar"
+                android:textSize="16sp"
+
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textViewExchangeRateSaleDollar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:gravity="center"
+                android:hint="@string/hint_Text_View_Exchange_field"
+                android:textColor="?attr/colorAccent"
+                android:textSize="18sp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textViewTitleExchRateSaleDollar"
+                app:layout_constraintEnd_toStartOf="@+id/imageButtonSaleDollarCalculate" />
+
+            <TextView
+                android:id="@+id/textViewTitleExchBuyDollar"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="26dp"
+                android:text="@string/title_Purchase_Dollar"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewTitleExchRateSaleDollar" />
+
+            <TextView
+                android:id="@+id/textViewExchangeBuyDollar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:gravity="center"
+                android:hint="@string/hint_Text_View_Exchange_field"
+                android:textColor="@color/colorAccent"
+                android:textSize="16sp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textViewTitleExchBuyDollar"
+                app:layout_constraintEnd_toStartOf="@+id/imageButtonBuyDollarCalculate" />
+
+            <TextView
+                android:id="@+id/textViewTitleExchSaleEuro"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="26dp"
+                android:text="@string/title_Selling_Euro"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewTitleExchBuyDollar" />
+
+            <TextView
+                android:id="@+id/textViewExchangeSaleEuro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:gravity="center"
+                android:hint="@string/hint_Text_View_Exchange_field"
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textViewTitleExchSaleEuro"
+                app:layout_constraintEnd_toStartOf="@+id/imageButtonSaleEuroCalculate" />
+
+            <TextView
+                android:id="@+id/textViewTitleExchBuyEuro"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="26dp"
+                android:text="@string/title_Purchase_Euro"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewTitleExchSaleEuro" />
+
+            <TextView
+                android:id="@+id/textViewExchangeBuyEuro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:gravity="center"
+                android:hint="@string/hint_Text_View_Exchange_field"
+                android:textColor="@color/colorAccent"
+                android:textSize="16sp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textViewTitleExchBuyEuro"
+                app:layout_constraintEnd_toStartOf="@+id/imageButtonBuyEuroCalculate" />
+
+            <android.support.constraint.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="285dp" />
+
+            <ImageButton
+                android:id="@+id/imageButtonSaleDollarCalculate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="0dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="0dp"
+                android:background="@android:color/holo_green_light"
+                android:padding="0sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewExchangeRateSaleDollar"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textViewExchangeRateSaleDollar"
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@drawable/ic_iso_black_48px" />
+
+            <ImageButton
+                android:id="@+id/imageButtonBuyDollarCalculate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="0dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="0dp"
+                android:background="@android:color/holo_green_light"
+                android:padding="0sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewExchangeBuyDollar"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textViewExchangeBuyDollar"
+                app:layout_constraintVertical_bias="0.481"
+                app:srcCompat="@drawable/ic_iso_black_48px" />
+
+            <ImageButton
+                android:id="@+id/imageButtonSaleEuroCalculate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="0dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="0dp"
+                android:background="@android:color/holo_purple"
+                android:padding="0sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewExchangeSaleEuro"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textViewExchangeSaleEuro"
+                app:layout_constraintVertical_bias="0.529"
+                app:srcCompat="@drawable/ic_iso_black_48px" />
+
+            <ImageButton
+                android:id="@+id/imageButtonBuyEuroCalculate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="0dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="0dp"
+                android:background="@android:color/holo_purple"
+                android:padding="0sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewExchangeBuyEuro"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textViewExchangeBuyEuro"
+                app:srcCompat="@drawable/ic_iso_black_48px" />
+
+        </android.support.constraint.ConstraintLayout>
+    </LinearLayout>
+</ScrollView>
+    <!--
+    </android.support.v4.widget.SwipeRefreshLayout>
+            -->

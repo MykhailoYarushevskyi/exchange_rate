@@ -1,0 +1,90 @@
+<resources>
+    <string name="app_name">Currency Rate</string>
+    <!-- Strings that using in ExchangeActivity -->
+    <!-- "For UI" -->
+    <string name="title_Selling">Selling: </string>
+    <string name="title_Purchase">Buying: </string>
+    <string name="title_Selling_Dollar">Selling: </string>
+    <string name="title_Purchase_Dollar">Buying: </string>
+    <string name="title_Selling_Euro">Selling: </string>
+    <string name="title_Purchase_Euro">Buying: </string>
+    <string name="button_Exchange_rate">REFRESH CURRENCY RATE</string>
+    <string name="hint_Text_View_Exchange_field">here is no result yet</string>
+    <string name="hint_TextView_Value_Result">here is no result yet</string>
+    <string name="text_TextView_Title_Result">Result of the calculation:</string>
+        <!-- "HINT for Buttons" -->
+        <string name="hint_buttonExchangeRate">REFRESH CURRENCY RATE</string>
+        <string name="hint_imageActionButton">Going the WEB SITE preferred you</string>
+        <string name="hint_imageCalcButton">Launching the outside app (Calculator)</string>
+        <string name="hint_imageButtonSaleDollarCalculate">Calculating for a choice currency</string>
+        <string name="hint_imageButtonBuyDollarCalculate">Calculating for a choice currency</string>
+        <string name="hint_imageButtonSaleEuroCalculate">Calculating for a choice currency</string>
+        <string name="hint_imageButtonBuyEuroCalculate">Calculating for a choice currency</string>
+        <string name="hint_No_hint_for_this_button">No Hint for This Button</string>
+         <!-- End of the "Hint for Buttons" -->
+    <!-- END of the "For UI" -->
+
+    <!-- Info RESOURCES -->
+        <!-- URL -->
+    <string name="http_PvBank_exchange_JSON_file"><![CDATA[https://api.privatbank.ua/p24api/pubinfo?exchange&json&coursid=11]]></string>
+    <string name="http_call_site_for_Pressed_Action_Button"><![CDATA[http://minfin.com.ua/ua/currency/auction/usd/sell/vinnitsa/?presort=&sort=time&order=desc]]></string>
+    <!-- Mesages Info -->
+    <string name="pressed_the_button_refresh_rate">GOING REFRESH CURRENCY RATE</string>
+    <string name="rate_was_refreshed">RATE WAS REFRESHED</string>
+    <string name="progress_dialog_working_title">Please wait.</string>
+    <string name="progress_dialog_working_message">currensy rate refreshing...</string>
+    <string name="pending_Response_Network">"Please wait. Pending the network response... %d"</string>
+    <!-- Messages for Exception -->
+    <string name="exception_while_creating_Input_Stream">ERROR: I/O Exception: no connection to the network, or the site does not respond</string>
+    <string name="exception_closing_Input_Stream">ERROR: I/O Exception in process InputStream closing </string>
+    <string name="exception_Create_JSONObject">ERROR at creating JSONArray or JSONObject</string>
+    <string name="exception_create_URL">URL is not created. Exception MalformedURLException thrown</string>
+    <!--  Error Input/Output messages -->
+    <string name="error_while_creating_Input_Stream">ERROR: I/O Error: no connection to the network, or the site does not respond</string>
+    <string name="error_while_using_the_Input_Stream">ERROR: InputStream.available(). Negative length of an array</string>
+    <string name="error_while_parsed_JSON_string_and_string_is_null">ERROR: JSONString is null</string>
+    <string name="error_result_JSON_string_to_Map_is_null">ERROR: A mapping a JSON string into a MAP gives the error</string>
+    <string name="error_Handling_Pressing_Button">ERROR: this Button not respond</string>
+    <string name="error_No_Action_for_this_Button">No Action for this Button</string>
+    <string name="error_Timed_Out_Response_Network">ERROR: Timed out waiting for a response from the network or the site</string>
+
+    <!-- Text different -->
+    <!-- Sign string resouses -->
+    <string name="sign_DOLLAR">$</string>
+    <string name="sign_EURO">\u20ac</string>
+    <string name="sign_My_MONEY">UAH</string>
+
+    <!-- Strings for send from ExchangeActivity to CalcActivity -->
+    <string name="message_About_Action_that_you_must_do">Input a number(s) for calculating the amount of exchange, in order to remain one field empty to calculating in it</string>
+    <string name="hint_field_title_currency_rate">currency rate:</string>
+    <string name="hint_field_value_currency_rate">value rate</string>
+    <string name="hint_field_amount_currency">amount</string>
+    <string name="hint_field_sum">sum</string>
+    <string name="hint_field_title_amount_currency">Currency amount:</string>
+    <string name="hint_field_title_sum">Sum:</string>
+
+    <!--                     Strings that using in CalcActivity             -->
+    <!-- Label of the CalcActivity  -->
+    <string name="title_activity_calc">Calculate a amount for exchange</string>
+    <!-- Bottom Navigation View -->
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <!-- HINT for Buttons of CalcActivity -->
+    <string name="hint_imageButtonCalculateOk">To Calculate a Result.</string>
+    <string name="hint_imageButtonClearRow1Col2">Erase All Data in this Field</string>
+    <string name="hint_imageButtonClearRow2Col2">Erase All Data in this Field</string>
+    <string name="hint_imageButtonClearRow3Col2">Erase All Data in this Field</string>
+    <!-- Messages for Exception in CalcActivity -->
+    <string name="exception_convert_String_to_double">ERROR: NumberFormatException : Unable to convert String to double variable</string>
+    <!-- Message for ERROR in CalcActivity -->
+    <string name="error_filling_input_fields">ERROR: Only one field may be empty OR all fields filling for recalculate sum</string>
+    <string name="call_calculator_or_other_tools">Call Calculator</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_preferences">Preferences</string>
+    <string name="description_action_button_web_site">Launch of the choosing web site</string>
+
+
+    <!-- Message  -->
+
+</resources>

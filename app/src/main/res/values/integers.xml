@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="length_input_stream_byte_buffer_default">1024</integer>
+    <integer name="time_out_Net_Operation_millis">75000</integer>
+    <integer name="interval_Tick_around_time_out_Net_Operation_millis">15000</integer>
+</resources>

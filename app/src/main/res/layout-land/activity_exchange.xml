@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:baselineAligned="false">
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+      - To efficiently re-use complete layouts, you can use the <include/> tags to embed     -
+      - another complete layout inside the current layout. In Sunshine, this allows us to    -
+      - conveniently create layouts for both the portrait and landscape layouts for the      -
+      - DetailActivity. If we hadn't have used <include/> tags, we would have duplicated     -
+      - layout code all over the place, and any changes we wanted to make, we'd have to make -
+      - twice.                                                                               -
+      - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/swipe_container"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.5">
+
+        <include
+            android:id="@+id/rate_list"
+            layout="@layout/exchange_rate_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <include
+        android:id="@+id/rate_list_buttons"
+        layout="@layout/exchange_rate_list_buttons"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.5" />
+</LinearLayout>
+
