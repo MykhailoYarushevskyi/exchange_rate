@@ -59,10 +59,9 @@ import static android.content.pm.PackageManager.GET_ACTIVITIES;
  */
 
 public class ExchangeActivity extends AppCompatActivity implements View.OnClickListener,
-        View.OnLongClickListener
-{
+        View.OnLongClickListener {
     
-    private static final String TAG = "ExchangeActivityTAG";
+    private static final String TAG = ExchangeActivity.class.getCanonicalName();
     
     public static final String EXTRA_MESSAGE = "ExchangeActivity_MESSAGE_String";
     public static final String EXTRA_MESSAGE_RATE_ME_BUY_OR_SALE_CURRENCY = "ExchangeActivity_MESSAGE_TITLE_RATE_ME_BUY_OR_SALE_CURRENCY";
@@ -83,7 +82,7 @@ public class ExchangeActivity extends AppCompatActivity implements View.OnClickL
     boolean isDownloading = true;
     private ProgressDialog progressDialog = null;
     private ProgressBar progressBarCircle = null;
-    // Set the Url for download a Json file
+    // Url for download a Json file
     private String httpExchangeJson;
     //handler for main activity looper
     private Handler handler;
@@ -108,7 +107,25 @@ public class ExchangeActivity extends AppCompatActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exchange);
+        
         initView();
+        initSwipeRefresh();
+        initCustomToast();
+        //Setting the Url for download a data of a currency exchange rate in format JSON string
+        setExchngeRateUrl(this.getString(R.string.http_PvBank_exchange_JSON_file));
+        
+        handler = new Handler();
+
+        Log.i(TAG, "onCreate is running");
+
+        //Launching net-operation in the local thread for getting the currency rate
+        netOperationThread();
+    }
+    
+    /**
+     * Initialization of the View for MainActivity's UI
+     */
+    private void initView() {
         ImageButton imageActionButton;
         ImageButton imageCalcButton;
         ImageButton imageButtonSaleDollarCalc;
@@ -146,39 +163,28 @@ public class ExchangeActivity extends AppCompatActivity implements View.OnClickL
         imageButtonSaleEuroCalc.setOnLongClickListener(this);
         imageButtonBuyEuroCalc.setOnClickListener(this);
         imageButtonBuyEuroCalc.setOnLongClickListener(this);
-        // For the custom layout of Toast:
-        LayoutInflater inflater = getLayoutInflater();
-        layoutCustomToast = inflater.inflate(R.layout.custom_refresh_toast, (ViewGroup) findViewById(R.id.custom_refresh_toast_container));
-        textViewCustomToast = (TextView) layoutCustomToast.findViewById(R.id.textView_custom_Refresh_Toast);
-        imageViewCustomToast = (ImageView) layoutCustomToast.findViewById(R.id.imageView_custom_Refresh_Toast);
-        
-        // Initialise of the SwipeRefreshLayout for refresh data
-        initSwipeRefresh();
-        
-        //EXTRA_MESSAGE = contextExchangeActivity.getPackageName() + ".MESSAGE";
-        
-        handler = new Handler();
-        // Set the Url for download a Json file
-        httpExchangeJson = this.getString(R.string.http_PvBank_exchange_JSON_file);
         // set text at the title fields of UI
         textViewTitle$Sale.setText(getString(R.string.title_Selling).concat(getString(R.string.sign_DOLLAR)));
         textViewTitle$Buy.setText(getString(R.string.title_Purchase).concat(getString(R.string.sign_DOLLAR)));
         textViewTitleEuroSale.setText(getString(R.string.title_Selling).concat(getString(R.string.sign_EURO)));
         textViewTitleEuroBuy.setText(getString(R.string.title_Purchase).concat(getString(R.string.sign_EURO)));
-        
-        Log.i(TAG, "onCreate is running");
-        //Toast.makeText(contextExchangeActivity, "onCreate is running", Toast.LENGTH_SHORT).show();
-        
-        //Launching net-operation in the local thread for getting the currency rate
-        netOperationThread();
     }
     
-    private void initView() {
-    
+    /**
+     * initializing of the custom Toast
+     */
+    private void initCustomToast() {
+        // For the custom layout of Toast:
+        LayoutInflater inflater = getLayoutInflater();
+        layoutCustomToast = inflater.inflate(R.layout.custom_refresh_toast, (ViewGroup) findViewById(R.id.custom_refresh_toast_container));
+        textViewCustomToast = (TextView) layoutCustomToast.findViewById(R.id.textView_custom_Refresh_Toast);
+        imageViewCustomToast = (ImageView) layoutCustomToast.findViewById(R.id.imageView_custom_Refresh_Toast);
     }
     
+    /**
+     *Initialise of the SwipeRefreshLayout for refresh data
+     */
     private void initSwipeRefresh() {
-        // Initialise of the SwipeRefreshLayout for refresh data
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_container);
         Log.i(TAG, "swipeRefreshLayout = " + swipeRefreshLayout);
         swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_bright,
@@ -198,6 +204,15 @@ public class ExchangeActivity extends AppCompatActivity implements View.OnClickL
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
+    }
+    
+    /**
+     *Setting the Url for download a data of a currency exchange rate in format JSON string
+     * @param url Url of a web resource that contains a data of a currency exchange rate
+     */
+    private void setExchngeRateUrl(String url){
+
+        httpExchangeJson = this.getString(R.string.http_PvBank_exchange_JSON_file);
     }
     
     /**
@@ -231,6 +246,7 @@ public class ExchangeActivity extends AppCompatActivity implements View.OnClickL
     }
     
     /**
+     *
      * @param v type View
      */
     public void onClick(View v) {
@@ -939,7 +955,7 @@ public class ExchangeActivity extends AppCompatActivity implements View.OnClickL
          * name parseJsonToMapPrv
          *
          * @param stringJson type final String
-         * @return HashMap<String ,   Double> The result of a parse JsonString, which contain a pair Key-Value, where
+         * @return HashMap<String   ,       Double> The result of a parse JsonString, which contain a pair Key-Value, where
          * Key - a name of currency with a suffix "buy" or "sale" and
          * Value - the value of a currency rate.
          */
