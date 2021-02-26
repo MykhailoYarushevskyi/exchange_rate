@@ -29,7 +29,16 @@ import java.util.Locale;
 public class CalcActivity extends AppCompatActivity implements View.OnClickListener, View.OnLongClickListener {
     
     private static final String TAG_CALC = "CalcActivityTAG";
-    
+    public static final String EXTRA_MESSAGE = "ExchangeActivity_MESSAGE_String";
+    public static final String EXTRA_MESSAGE_RATE_ME_BUY_OR_SALE_CURRENCY = "ExchangeActivity_MESSAGE_TITLE_RATE_ME_BUY_OR_SALE_CURRENCY";
+    public static final String EXTRA_MESSAGE_ME_AMOUNT_OF_CURRENCY = "ExchangeActivity_MESSAGE_TITLE_CURRENCY_AMOUNT";
+    public static final String EXTRA_MESSAGE_ME_SUM = "ExchangeActivity_MESSAGE_TITLE_MONEY_SUM";
+    public static final String EXTRA_DATA_ME_BUY_OR_SALE_CURRENCY_RATE_DOUBLE = "ExchangeActivity_DATA_FOR_BUY_OR_SALE_CURRENCY_RATE_double";
+    public static final String EXTRA_DATA_CURRENCY_NAME_STRING = "ExchangeActivity_DATA_CURRENCY_NAME_String";
+    public static final String EXTRA_DATA_MONEY_NAME_STRING = "ExchangeActivity_DATA_MONEY_NAME_String";
+    public static final String EXTRA_DATA_RESULT_FROM_CALCACTIVITY_DOUBLE = "CalcActivity_Data_Result_double";
+    public static final String EXTRA_DATA_RESULT_FROM_CALCACTIVITY_STRING = "CalcActivity_Data_Result_String";
+    public static final int CODE_REQUEST_FOR_START_CALCACTIVITY = 1;
     String currensySign;
     String moneySign;
     
@@ -130,27 +139,27 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
         
         //get an Intent which was created in ExchangeActivity for start of this CalcActivity
         Intent intentCalcActivity = getIntent();
-        if (intentCalcActivity != null && intentCalcActivity.hasExtra(ExchangeActivity.EXTRA_MESSAGE)
-                && intentCalcActivity.hasExtra(ExchangeActivity.EXTRA_MESSAGE_RATE_ME_BUY_OR_SALE_CURRENCY)
-                && intentCalcActivity.hasExtra(ExchangeActivity.EXTRA_MESSAGE_ME_AMOUNT_OF_CURRENCY)
-                && intentCalcActivity.hasExtra(ExchangeActivity.EXTRA_MESSAGE_ME_SUM)
-                && intentCalcActivity.hasExtra(ExchangeActivity.EXTRA_DATA_CURRENCY_NAME_STRING)
-                && intentCalcActivity.hasExtra(ExchangeActivity.EXTRA_DATA_MONEY_NAME_STRING)) {
+        if (intentCalcActivity != null && intentCalcActivity.hasExtra(EXTRA_MESSAGE)
+                && intentCalcActivity.hasExtra(EXTRA_MESSAGE_RATE_ME_BUY_OR_SALE_CURRENCY)
+                && intentCalcActivity.hasExtra(EXTRA_MESSAGE_ME_AMOUNT_OF_CURRENCY)
+                && intentCalcActivity.hasExtra(EXTRA_MESSAGE_ME_SUM)
+                && intentCalcActivity.hasExtra(EXTRA_DATA_CURRENCY_NAME_STRING)
+                && intentCalcActivity.hasExtra(EXTRA_DATA_MONEY_NAME_STRING)) {
             // setting the general title for this screen
-            messageTitleGeneral = intentCalcActivity.getStringExtra(ExchangeActivity.EXTRA_MESSAGE);
+            messageTitleGeneral = intentCalcActivity.getStringExtra(EXTRA_MESSAGE);
             mTextMessageForAction.setText(messageTitleGeneral);
             //retrieve from Intent String value for the title of a currency rate
-            titleBuyOrSaleCurrency = intentCalcActivity.getStringExtra(ExchangeActivity.EXTRA_MESSAGE_RATE_ME_BUY_OR_SALE_CURRENCY);
+            titleBuyOrSaleCurrency = intentCalcActivity.getStringExtra(EXTRA_MESSAGE_RATE_ME_BUY_OR_SALE_CURRENCY);
             //retrieve from Intent String value for the title of a currency amount
-            titleCurrencyAmount = intentCalcActivity.getStringExtra(ExchangeActivity.EXTRA_MESSAGE_ME_AMOUNT_OF_CURRENCY);
+            titleCurrencyAmount = intentCalcActivity.getStringExtra(EXTRA_MESSAGE_ME_AMOUNT_OF_CURRENCY);
             //retrieve from Intent String value for the title of a sum
-            titleSum = intentCalcActivity.getStringExtra(ExchangeActivity.EXTRA_MESSAGE_ME_SUM);
+            titleSum = intentCalcActivity.getStringExtra(EXTRA_MESSAGE_ME_SUM);
             //retrieve from Intent double value for the value of a currency rate
-            rateValueMeBuyOrSale = intentCalcActivity.getDoubleExtra(ExchangeActivity.EXTRA_DATA_ME_BUY_OR_SALE_CURRENCY_RATE_DOUBLE, 0.0);
+            rateValueMeBuyOrSale = intentCalcActivity.getDoubleExtra(EXTRA_DATA_ME_BUY_OR_SALE_CURRENCY_RATE_DOUBLE, 0.0);
             //retrieve from intent string value of a currency name
-            currensySign = intentCalcActivity.getStringExtra(ExchangeActivity.EXTRA_DATA_CURRENCY_NAME_STRING);
+            currensySign = intentCalcActivity.getStringExtra(EXTRA_DATA_CURRENCY_NAME_STRING);
             //retrieve from intent string value of a my money name
-            moneySign = intentCalcActivity.getStringExtra(ExchangeActivity.EXTRA_DATA_MONEY_NAME_STRING);
+            moneySign = intentCalcActivity.getStringExtra(EXTRA_DATA_MONEY_NAME_STRING);
             //Setting the title of a field:
             // 1)a currency rate;
             mTextViewTitleRow1Col1.setText(titleBuyOrSaleCurrency.concat(currensySign));
@@ -181,6 +190,17 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
     }
+    
+    // based on https://stackoverflow.com/a/21574135/115145
+    // (Obtained from MainActivity todo_app Commonsware)
+    
+    private void hideSoftInput() {
+        if (getCurrentFocus()!=null && getCurrentFocus().getWindowToken()!=null) {
+            ((InputMethodManager)getSystemService(INPUT_METHOD_SERVICE))
+                    .hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        }
+    }
+    
     
     /**
      *
@@ -302,8 +322,8 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 if (isResult) {
                     Intent intentResult = new Intent(); //Intent for send result into activity that called this activity
-                    intentResult.putExtra(ExchangeActivity.EXTRA_DATA_RESULT_FROM_CALCACTIVITY_DOUBLE, resultOfOperation);// result for send to activity that called this activity
-                    intentResult.putExtra(ExchangeActivity.EXTRA_DATA_RESULT_FROM_CALCACTIVITY_STRING, resultCurrencyName);
+                    intentResult.putExtra(EXTRA_DATA_RESULT_FROM_CALCACTIVITY_DOUBLE, resultOfOperation);// result for send to activity that called this activity
+                    intentResult.putExtra(EXTRA_DATA_RESULT_FROM_CALCACTIVITY_STRING, resultCurrencyName);
                     setResult(RESULT_OK, intentResult);
                     // Hide input soft keyboard for current view who is in focus
                     //hideSoftKeyboard();

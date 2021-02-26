@@ -140,6 +140,7 @@
                 android:textStyle="bold" />
             <!-- tools:text="@string/hint_field_title_sum" -->
 
+
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -152,7 +153,8 @@
                     android:gravity="center"
                     android:hint="@string/hint_field_sum"
                     android:inputType="numberDecimal"
-                    tools:text="0000000.00" />
+                    tools:text="0000000.00"/>
+
             </android.support.design.widget.TextInputLayout>
 
             <View

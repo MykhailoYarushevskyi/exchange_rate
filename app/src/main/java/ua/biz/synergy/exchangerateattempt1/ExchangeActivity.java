@@ -33,6 +33,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -62,17 +64,7 @@ public class ExchangeActivity extends AppCompatActivity implements View.OnClickL
         View.OnLongClickListener {
     
     private static final String TAG = ExchangeActivity.class.getCanonicalName();
-    
-    public static final String EXTRA_MESSAGE = "ExchangeActivity_MESSAGE_String";
-    public static final String EXTRA_MESSAGE_RATE_ME_BUY_OR_SALE_CURRENCY = "ExchangeActivity_MESSAGE_TITLE_RATE_ME_BUY_OR_SALE_CURRENCY";
-    public static final String EXTRA_MESSAGE_ME_AMOUNT_OF_CURRENCY = "ExchangeActivity_MESSAGE_TITLE_CURRENCY_AMOUNT";
-    public static final String EXTRA_MESSAGE_ME_SUM = "ExchangeActivity_MESSAGE_TITLE_MONEY_SUM";
-    public static final String EXTRA_DATA_ME_BUY_OR_SALE_CURRENCY_RATE_DOUBLE = "ExchangeActivity_DATA_FOR_BUY_OR_SALE_CURRENCY_RATE_double";
-    public static final String EXTRA_DATA_CURRENCY_NAME_STRING = "ExchangeActivity_DATA_CURRENCY_NAME_String";
-    public static final String EXTRA_DATA_MONEY_NAME_STRING = "ExchangeActivity_DATA_MONEY_NAME_String";
-    public static final int CODE_REQUEST_FOR_START_CALCACTIVITY = 1;
-    public static final String EXTRA_DATA_RESULT_FROM_CALCACTIVITY_DOUBLE = "CalcActivity_Data_Result_double";
-    public static final String EXTRA_DATA_RESULT_FROM_CALCACTIVITY_STRING = "CalcActivity_Data_Result_String";
+
     
     private final Context contextExchangeActivity = ExchangeActivity.this;
     
@@ -112,7 +104,7 @@ public class ExchangeActivity extends AppCompatActivity implements View.OnClickL
         initSwipeRefresh();
         initCustomToast();
         //Setting the Url for download a data of a currency exchange rate in format JSON string
-        setExchngeRateUrl(this.getString(R.string.http_PvBank_exchange_JSON_file));
+        setCurrencyRateUrl(this.getString(R.string.http_PvBank_exchange_JSON_file));
         
         handler = new Handler();
 
@@ -210,7 +202,7 @@ public class ExchangeActivity extends AppCompatActivity implements View.OnClickL
      *Setting the Url for download a data of a currency exchange rate in format JSON string
      * @param url Url of a web resource that contains a data of a currency exchange rate
      */
-    private void setExchngeRateUrl(String url){
+    private void setCurrencyRateUrl(String url){
 
         httpExchangeJson = this.getString(R.string.http_PvBank_exchange_JSON_file);
     }
@@ -288,63 +280,63 @@ public class ExchangeActivity extends AppCompatActivity implements View.OnClickL
                 String currencyName = getString(R.string.sign_DOLLAR);
                 Intent intentCalcActivity = new Intent(this, CalcActivity.class);
                 // sending a label text for a calculator
-                intentCalcActivity.putExtra(EXTRA_MESSAGE, getString(R.string.message_About_Action_that_you_must_do));
+                intentCalcActivity.putExtra(CalcActivity.EXTRA_MESSAGE, getString(R.string.message_About_Action_that_you_must_do));
                 // sending a title text for a currency rate field
-                intentCalcActivity.putExtra(EXTRA_MESSAGE_RATE_ME_BUY_OR_SALE_CURRENCY, getString(R.string.title_Selling));
+                intentCalcActivity.putExtra(CalcActivity.EXTRA_MESSAGE_RATE_ME_BUY_OR_SALE_CURRENCY, getString(R.string.title_Selling));
                 // sending a title text for a currency amount field
-                intentCalcActivity.putExtra(EXTRA_MESSAGE_ME_AMOUNT_OF_CURRENCY, getString(R.string.hint_field_title_amount_currency));
+                intentCalcActivity.putExtra(CalcActivity.EXTRA_MESSAGE_ME_AMOUNT_OF_CURRENCY, getString(R.string.hint_field_title_amount_currency));
                 // sending a title text for a sum fild
-                intentCalcActivity.putExtra(EXTRA_MESSAGE_ME_SUM, getString(R.string.hint_field_title_sum));
+                intentCalcActivity.putExtra(CalcActivity.EXTRA_MESSAGE_ME_SUM, getString(R.string.hint_field_title_sum));
                 // sending a value of a currency rate
-                intentCalcActivity.putExtra(EXTRA_DATA_ME_BUY_OR_SALE_CURRENCY_RATE_DOUBLE, convertStringToDouble(this.textView$SaleExchngeRate.getText().toString()));
+                intentCalcActivity.putExtra(CalcActivity.EXTRA_DATA_ME_BUY_OR_SALE_CURRENCY_RATE_DOUBLE, convertStringToDouble(this.textView$SaleExchngeRate.getText().toString()));
                 // setting a currency name sign
-                intentCalcActivity.putExtra(EXTRA_DATA_CURRENCY_NAME_STRING, getString(R.string.sign_DOLLAR));
+                intentCalcActivity.putExtra(CalcActivity.EXTRA_DATA_CURRENCY_NAME_STRING, getString(R.string.sign_DOLLAR));
                 // setting my money sign
-                intentCalcActivity.putExtra(EXTRA_DATA_MONEY_NAME_STRING, getString(R.string.sign_My_MONEY));
+                intentCalcActivity.putExtra(CalcActivity.EXTRA_DATA_MONEY_NAME_STRING, getString(R.string.sign_My_MONEY));
                 //intentCalcActivity.addFlags(FLAG_ACTIVITY_NEW_DOCUMENT);
-                startActivityForResult(intentCalcActivity, CODE_REQUEST_FOR_START_CALCACTIVITY);
+                startActivityForResult(intentCalcActivity, CalcActivity.CODE_REQUEST_FOR_START_CALCACTIVITY);
                 break;
             }
             case R.id.imageButtonBuyDollarCalculate: { // Call INTERNAL CalcActivity explicitly for calculating sale of a dollar
                 Intent intentCalcActivity = new Intent(this, CalcActivity.class);
-                intentCalcActivity.putExtra(EXTRA_MESSAGE, getString(R.string.message_About_Action_that_you_must_do));
-                intentCalcActivity.putExtra(EXTRA_MESSAGE_RATE_ME_BUY_OR_SALE_CURRENCY, getString(R.string.title_Purchase));
-                intentCalcActivity.putExtra(EXTRA_MESSAGE_ME_AMOUNT_OF_CURRENCY, getString(R.string.hint_field_title_amount_currency));
-                intentCalcActivity.putExtra(EXTRA_MESSAGE_ME_SUM, getString(R.string.hint_field_title_sum));
+                intentCalcActivity.putExtra(CalcActivity.EXTRA_MESSAGE, getString(R.string.message_About_Action_that_you_must_do));
+                intentCalcActivity.putExtra(CalcActivity.EXTRA_MESSAGE_RATE_ME_BUY_OR_SALE_CURRENCY, getString(R.string.title_Purchase));
+                intentCalcActivity.putExtra(CalcActivity.EXTRA_MESSAGE_ME_AMOUNT_OF_CURRENCY, getString(R.string.hint_field_title_amount_currency));
+                intentCalcActivity.putExtra(CalcActivity.EXTRA_MESSAGE_ME_SUM, getString(R.string.hint_field_title_sum));
                 // sending a value of a currency rate
-                intentCalcActivity.putExtra(EXTRA_DATA_ME_BUY_OR_SALE_CURRENCY_RATE_DOUBLE, convertStringToDouble(this.textView$BuyExchngeRate.getText().toString()));
-                intentCalcActivity.putExtra(EXTRA_DATA_CURRENCY_NAME_STRING, getString(R.string.sign_DOLLAR));
-                intentCalcActivity.putExtra(EXTRA_DATA_MONEY_NAME_STRING, getString(R.string.sign_My_MONEY));
+                intentCalcActivity.putExtra(CalcActivity.EXTRA_DATA_ME_BUY_OR_SALE_CURRENCY_RATE_DOUBLE, convertStringToDouble(this.textView$BuyExchngeRate.getText().toString()));
+                intentCalcActivity.putExtra(CalcActivity.EXTRA_DATA_CURRENCY_NAME_STRING, getString(R.string.sign_DOLLAR));
+                intentCalcActivity.putExtra(CalcActivity.EXTRA_DATA_MONEY_NAME_STRING, getString(R.string.sign_My_MONEY));
                 //intentCalcActivity.addFlags(FLAG_ACTIVITY_NEW_DOCUMENT);
-                startActivityForResult(intentCalcActivity, CODE_REQUEST_FOR_START_CALCACTIVITY);
+                startActivityForResult(intentCalcActivity, CalcActivity.CODE_REQUEST_FOR_START_CALCACTIVITY);
                 break;
             }
             case R.id.imageButtonSaleEuroCalculate: { // Call INTERNAL CalcActivity explicitly for calculating buy of a EURO
                 Intent intentCalcActivity = new Intent(this, CalcActivity.class);
-                intentCalcActivity.putExtra(EXTRA_MESSAGE, getString(R.string.message_About_Action_that_you_must_do));
-                intentCalcActivity.putExtra(EXTRA_MESSAGE_RATE_ME_BUY_OR_SALE_CURRENCY, getString(R.string.title_Selling));
-                intentCalcActivity.putExtra(EXTRA_MESSAGE_ME_AMOUNT_OF_CURRENCY, getString(R.string.hint_field_title_amount_currency));
-                intentCalcActivity.putExtra(EXTRA_MESSAGE_ME_SUM, getString(R.string.hint_field_title_sum));
+                intentCalcActivity.putExtra(CalcActivity.EXTRA_MESSAGE, getString(R.string.message_About_Action_that_you_must_do));
+                intentCalcActivity.putExtra(CalcActivity.EXTRA_MESSAGE_RATE_ME_BUY_OR_SALE_CURRENCY, getString(R.string.title_Selling));
+                intentCalcActivity.putExtra(CalcActivity.EXTRA_MESSAGE_ME_AMOUNT_OF_CURRENCY, getString(R.string.hint_field_title_amount_currency));
+                intentCalcActivity.putExtra(CalcActivity.EXTRA_MESSAGE_ME_SUM, getString(R.string.hint_field_title_sum));
                 // sending a value of a currency rate
-                intentCalcActivity.putExtra(EXTRA_DATA_ME_BUY_OR_SALE_CURRENCY_RATE_DOUBLE, convertStringToDouble(this.textViewEuroSaleExchngeRate.getText().toString()));
-                intentCalcActivity.putExtra(EXTRA_DATA_CURRENCY_NAME_STRING, getString(R.string.sign_EURO));
-                intentCalcActivity.putExtra(EXTRA_DATA_MONEY_NAME_STRING, getString(R.string.sign_My_MONEY));
+                intentCalcActivity.putExtra(CalcActivity.EXTRA_DATA_ME_BUY_OR_SALE_CURRENCY_RATE_DOUBLE, convertStringToDouble(this.textViewEuroSaleExchngeRate.getText().toString()));
+                intentCalcActivity.putExtra(CalcActivity.EXTRA_DATA_CURRENCY_NAME_STRING, getString(R.string.sign_EURO));
+                intentCalcActivity.putExtra(CalcActivity.EXTRA_DATA_MONEY_NAME_STRING, getString(R.string.sign_My_MONEY));
                 //intentCalcActivity.addFlags(FLAG_ACTIVITY_NEW_DOCUMENT);
-                startActivityForResult(intentCalcActivity, CODE_REQUEST_FOR_START_CALCACTIVITY);
+                startActivityForResult(intentCalcActivity, CalcActivity.CODE_REQUEST_FOR_START_CALCACTIVITY);
                 break;
             }
             case R.id.imageButtonBuyEuroCalculate: { // Call INTERNAL CalcActivity explicitly for calculating sale of a EURO
                 Intent intentCalcActivity = new Intent(this, CalcActivity.class);
-                intentCalcActivity.putExtra(EXTRA_MESSAGE, getString(R.string.message_About_Action_that_you_must_do));
-                intentCalcActivity.putExtra(EXTRA_MESSAGE_RATE_ME_BUY_OR_SALE_CURRENCY, getString(R.string.title_Purchase));
-                intentCalcActivity.putExtra(EXTRA_MESSAGE_ME_AMOUNT_OF_CURRENCY, getString(R.string.hint_field_title_amount_currency));
-                intentCalcActivity.putExtra(EXTRA_MESSAGE_ME_SUM, getString(R.string.hint_field_title_sum));
+                intentCalcActivity.putExtra(CalcActivity.EXTRA_MESSAGE, getString(R.string.message_About_Action_that_you_must_do));
+                intentCalcActivity.putExtra(CalcActivity.EXTRA_MESSAGE_RATE_ME_BUY_OR_SALE_CURRENCY, getString(R.string.title_Purchase));
+                intentCalcActivity.putExtra(CalcActivity.EXTRA_MESSAGE_ME_AMOUNT_OF_CURRENCY, getString(R.string.hint_field_title_amount_currency));
+                intentCalcActivity.putExtra(CalcActivity.EXTRA_MESSAGE_ME_SUM, getString(R.string.hint_field_title_sum));
                 // sending a value of a currency rate
-                intentCalcActivity.putExtra(EXTRA_DATA_ME_BUY_OR_SALE_CURRENCY_RATE_DOUBLE, convertStringToDouble(this.textViewEuroBuyExchngeRate.getText().toString()));
-                intentCalcActivity.putExtra(EXTRA_DATA_CURRENCY_NAME_STRING, getString(R.string.sign_EURO));
-                intentCalcActivity.putExtra(EXTRA_DATA_MONEY_NAME_STRING, getString(R.string.sign_My_MONEY));
+                intentCalcActivity.putExtra(CalcActivity.EXTRA_DATA_ME_BUY_OR_SALE_CURRENCY_RATE_DOUBLE, convertStringToDouble(this.textViewEuroBuyExchngeRate.getText().toString()));
+                intentCalcActivity.putExtra(CalcActivity.EXTRA_DATA_CURRENCY_NAME_STRING, getString(R.string.sign_EURO));
+                intentCalcActivity.putExtra(CalcActivity.EXTRA_DATA_MONEY_NAME_STRING, getString(R.string.sign_My_MONEY));
                 //intentCalcActivity.addFlags(FLAG_ACTIVITY_NEW_DOCUMENT);
-                startActivityForResult(intentCalcActivity, CODE_REQUEST_FOR_START_CALCACTIVITY);
+                startActivityForResult(intentCalcActivity, CalcActivity.CODE_REQUEST_FOR_START_CALCACTIVITY);
                 break;
             }
             default: {
@@ -640,9 +632,9 @@ public class ExchangeActivity extends AppCompatActivity implements View.OnClickL
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent dataIntent) {
         Log.i(TAG, "onActivityResult: requestCode= " + requestCode + "; resultCode= " + resultCode);
-        if (CODE_REQUEST_FOR_START_CALCACTIVITY == requestCode && RESULT_OK == resultCode) {
-            double resData = dataIntent.getDoubleExtra(EXTRA_DATA_RESULT_FROM_CALCACTIVITY_DOUBLE, 0.0);
-            String resString = dataIntent.getStringExtra(EXTRA_DATA_RESULT_FROM_CALCACTIVITY_STRING);
+        if (CalcActivity.CODE_REQUEST_FOR_START_CALCACTIVITY == requestCode && RESULT_OK == resultCode) {
+            double resData = dataIntent.getDoubleExtra(CalcActivity.EXTRA_DATA_RESULT_FROM_CALCACTIVITY_DOUBLE, 0.0);
+            String resString = dataIntent.getStringExtra(CalcActivity.EXTRA_DATA_RESULT_FROM_CALCACTIVITY_STRING);
             textViewResult.setText(String.format(Locale.getDefault(), "%.2f %s", resData, resString));
             Log.i(TAG, "resData = " + resData);
             Bundle dataBundle = dataIntent.getExtras();
@@ -876,7 +868,17 @@ public class ExchangeActivity extends AppCompatActivity implements View.OnClickL
             return (strResult);
         }
         
+       
+        
         /**
+         * Parsing JsonString which contain a exchange rate for the currency.
+         * name parseJsonToMapPrv
+         *
+         * @param stringJson type final String
+         * @return HashMap<String   ,       Double> The result of a parse JsonString, which contain a pair Key-Value, where
+         * Key - a name of currency with a suffix "buy" or "sale" and
+         * Value - the value of a currency rate.
+         */ /**
          * Input a string resource directly from URL.
          *
          * @param httpUrl
@@ -884,12 +886,12 @@ public class ExchangeActivity extends AppCompatActivity implements View.OnClickL
          * @throws IOException
          */
         String httpOperationInputStream(final String httpUrl) throws IOException {
-            
+        
             final int LENGTH_INPUT_BYTE_BUFFER = contextExchangeActivity.getResources().getInteger(R.integer.length_input_stream_byte_buffer_default);
             String strResult = null;
             URL urlHttp = null;
             HttpURLConnection httpsUrlConnection = null;
-            
+        
             Log.i(TAG, "The method httpOperationInputStream is running - BEGIN");
             try {
                 urlHttp = new URL(httpUrl);
@@ -949,18 +951,8 @@ public class ExchangeActivity extends AppCompatActivity implements View.OnClickL
             */
             return strResult;
         }
-        
-        /**
-         * Parsing JsonString which contain a exchange rate for the currency.
-         * name parseJsonToMapPrv
-         *
-         * @param stringJson type final String
-         * @return HashMap<String   ,       Double> The result of a parse JsonString, which contain a pair Key-Value, where
-         * Key - a name of currency with a suffix "buy" or "sale" and
-         * Value - the value of a currency rate.
-         */
         Map<String, Double> parseJsonToMapPrv(final String stringJson) {
-            
+            parseGsonFromJson(stringJson);
             Map<String, Double> map = null; //The result of the parse of the JSON string
             JSONArray arrayOfJsonObject;
             JSONObject jsonObject;
@@ -1009,6 +1001,27 @@ public class ExchangeActivity extends AppCompatActivity implements View.OnClickL
             
             
             return map;
+        }
+    
+        /**
+         * Deserialization from Json
+         * @param stringJson
+         * @return Object An object that is have deserialized from a JSON string
+         */
+        Object parseGsonFromJson(String stringJson){
+            if(null == stringJson){
+                return null;
+            }
+            Log.i(TAG,"parseGsonFromJson(String stringJson): " );
+            Gson gson = new Gson();
+            //String testStringJson = "["abc
+            String objFromJsonString = gson.fromJson("abc", String.class);
+
+            Log.i(TAG,"stringJson = " + "abc");
+
+            Log.i(TAG,"stringFromObject = " + objFromJsonString);
+            
+            return objFromJsonString;
         }
         
         
